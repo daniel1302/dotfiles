@@ -48,3 +48,13 @@ source "$HOME/.cargo/env"
 
 # dotfiles command
 alias gitdotfiles='/usr/bin/git --git-dir=$HOME/.cfg/.git --work-tree=$HOME'
+
+export PATH=$HOME/go/bin:$PATH
+
+if [ -d /usr/local/share/google-cloud-sdk/bin ]; then
+    export PATH=/usr/local/share/google-cloud-sdk/bin:$PATH
+fi;
+
+if [ -d $HOME/.local/bin ]; then
+    export PATH=$HOME/.local/bin:$PATH
+fi;

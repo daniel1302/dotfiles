@@ -3,6 +3,8 @@ set -x;
 # get sudo credentials for further usage;
 sudo whoami;
 
+# todo: add install for go
+
 # golang tools
 go install github.com/incu6us/goimports-reviser/v3@latest ;
 go install mvdan.cc/gofumpt@latest ;
@@ -11,6 +13,11 @@ go install github.com/go-delve/delve/cmd/dlv@latest ;
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.50.1 ;
 go install golang.org/x/tools/cmd/goimports@latest ;
 
+# install rust
+if ! command -v rustup; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ;
+fi;
+#  sh -s -- -y
 
 # rust tools
 rustup component add rust-src;
