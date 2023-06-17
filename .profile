@@ -44,6 +44,7 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 # export for external ssh terminal
 export TERM=xterm-256color
 
+source "$HOME/.cargo/env"
 
 # dotfiles command
 alias gitdotfiles='/usr/bin/git --git-dir=$HOME/.cfg/.git --work-tree=$HOME'
