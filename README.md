@@ -5,6 +5,16 @@ Configuration for the system
 
 JetBrainsMono Nerd Font
 
+## features
+
+- tmux config
+- neovim config
+
+## supported operating systems
+
+- ubuntu
+- macos
+
 ## usage
 
 ```shell
