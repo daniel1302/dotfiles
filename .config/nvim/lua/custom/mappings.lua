@@ -10,7 +10,8 @@ M.dap = {
     ["<leader>dus"] = {
       function ()
         local widgets = require('dap.ui.widgets');
-        local sidebar = widgets.sidebar(widgets.scopes);
+        local sidebar = widgets.sidebar(widgets.scopes, {}, "60 vsplit");
+
         sidebar.open();
       end,
       "Open debugging sidebar"
