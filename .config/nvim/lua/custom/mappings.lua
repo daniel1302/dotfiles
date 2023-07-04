@@ -18,6 +18,16 @@ M.dap = {
   }
 }
 
+M.crates = {
+  n = {
+    ["<leader>rcu"] = {
+      function ()
+        require('crates').upgrade_all_crates()
+      end,
+      "upgrade all crates"
+    }
+  }
+}
 
 M.dap_go = {
   plugin = true,
