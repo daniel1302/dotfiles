@@ -54,6 +54,10 @@ if ! command -v lua-language-server; then
   sudo cp bin/lua-language-server /usr/local/bin/lua-language-server ;
 fi;
 
+# live grep
+sudo apt-get install -y ripgrep;
+
+# Rust debugging
 apt-get install lldb-13;
 sudo ln -s /usr/bin/lldb-vscode-13 /usr/bin/lldb-vscode || echo "lldb-vscode already linked";
 sudo ln -s /usr/bin/lldb-server-13 /usr/bin/lldb-server || echo "lldb-server already linked";
