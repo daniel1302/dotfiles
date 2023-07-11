@@ -11,7 +11,8 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   echo "Running on Linux";
   sudo apt-get update;
-  sudo apt-get install -y tmux ninja gradle git;
+  sudo apt-get install -y tmux ninja gradle git ninja-build;
+
 
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
   echo "Running on Windows x32"
@@ -61,7 +62,6 @@ fi;
 if ! command -v lua-language-server; then
   mkdir -p ~/tools;
 
-  sudo apt-get install -y git ninja-build;
   cd ~/tools; git clone https://github.com/LuaLS/lua-language-server;
   cd lua-language-server;
   ./make.sh;
