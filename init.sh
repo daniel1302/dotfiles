@@ -3,6 +3,22 @@ set -x;
 # get sudo credentials for further usage;
 sudo whoami;
 
+# install software
+if [ "$(uname)" == "Darwin" ]; then
+  echo "Running for MacOS";
+  brew install tmux ninja gradle git;
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  echo "Running on Linux";
+  sudo apt-get update;
+  sudo apt-get install -y tmux ninja gradle git;
+
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+  echo "Running on Windows x32"
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    echo "Running on Windows x64"
+fi
+
 # todo: add install for go
 
 # golang tools
@@ -35,8 +51,7 @@ fi;
 # check if gradlew installed
 if ! ls ~/tools/groovy-language-server/build/libs/groovy-language-server-all.jar; then
   mkdir -p ~/tools;
-  
-  sudo apt-get install -y gradle git;
+
   cd ~/tools; git clone https://github.com/GroovyLanguageServer/groovy-language-server.git;
   cd groovy-language-server; 
   ./gradlew build; 
@@ -53,3 +68,6 @@ if ! command -v lua-language-server; then
 
   sudo cp bin/lua-language-server /usr/local/bin/lua-language-server ;
 fi;
+
+# tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
