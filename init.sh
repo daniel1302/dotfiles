@@ -3,6 +3,26 @@ set -x;
 # get sudo credentials for further usage;
 sudo whoami;
 
+# install software
+if [ "$(uname)" == "Darwin" ]; then
+  echo "Running for MacOS";
+  brew install tmux ninja gradle git;
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  echo "Running on Linux";
+  sudo apt-get update;
+  sudo apt-get install -y tmux ninja gradle git ninja-build ripgrep lldb-13;
+  
+  # Rust debugging
+  sudo ln -s /usr/bin/lldb-vscode-13 /usr/bin/lldb-vscode || echo "lldb-vscode already linked";
+  sudo ln -s /usr/bin/lldb-server-13 /usr/bin/lldb-server || echo "lldb-server already linked";
+
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+  echo "Running on Windows x32"
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    echo "Running on Windows x64"
+fi
+
 # todo: add install for go
 
 # golang tools
@@ -35,8 +55,7 @@ fi;
 # check if gradlew installed
 if ! ls ~/tools/groovy-language-server/build/libs/groovy-language-server-all.jar; then
   mkdir -p ~/tools;
-  
-  sudo apt-get install -y gradle git;
+
   cd ~/tools; git clone https://github.com/GroovyLanguageServer/groovy-language-server.git;
   cd groovy-language-server; 
   ./gradlew build; 
@@ -46,7 +65,6 @@ fi;
 if ! command -v lua-language-server; then
   mkdir -p ~/tools;
 
-  sudo apt-get install -y git ninja-build;
   cd ~/tools; git clone https://github.com/LuaLS/lua-language-server;
   cd lua-language-server;
   ./make.sh;
@@ -54,10 +72,8 @@ if ! command -v lua-language-server; then
   sudo cp bin/lua-language-server /usr/local/bin/lua-language-server ;
 fi;
 
-# live grep
-sudo apt-get install -y ripgrep;
+# tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# Rust debugging
-apt-get install lldb-13;
-sudo ln -s /usr/bin/lldb-vscode-13 /usr/bin/lldb-vscode || echo "lldb-vscode already linked";
-sudo ln -s /usr/bin/lldb-server-13 /usr/bin/lldb-server || echo "lldb-server already linked";
+# live grep
+sudo apt-get install -y ;
