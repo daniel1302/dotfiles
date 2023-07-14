@@ -10,7 +10,8 @@ M.dap = {
     ["<leader>dus"] = {
       function ()
         local widgets = require('dap.ui.widgets');
-        local sidebar = widgets.sidebar(widgets.scopes);
+        local sidebar = widgets.sidebar(widgets.scopes, {}, "60 vsplit");
+
         sidebar.open();
       end,
       "Open debugging sidebar"
@@ -18,6 +19,16 @@ M.dap = {
   }
 }
 
+M.crates = {
+  n = {
+    ["<leader>rcu"] = {
+      function ()
+        require('crates').upgrade_all_crates()
+      end,
+      "upgrade all crates"
+    }
+  }
+}
 
 M.dap_go = {
   plugin = true,

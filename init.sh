@@ -11,8 +11,11 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   echo "Running on Linux";
   sudo apt-get update;
-  sudo apt-get install -y tmux ninja gradle git ninja-build;
-
+  sudo apt-get install -y tmux ninja gradle git ninja-build ripgrep lldb-13;
+  
+  # Rust debugging
+  sudo ln -s /usr/bin/lldb-vscode-13 /usr/bin/lldb-vscode || echo "lldb-vscode already linked";
+  sudo ln -s /usr/bin/lldb-server-13 /usr/bin/lldb-server || echo "lldb-server already linked";
 
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
   echo "Running on Windows x32"
@@ -71,3 +74,6 @@ fi;
 
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# live grep
+sudo apt-get install -y ;
